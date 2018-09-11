@@ -15,5 +15,6 @@ namespace Pathfinder.Entities
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
     }
 }
