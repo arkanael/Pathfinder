@@ -35,9 +35,21 @@ namespace Pathfinder.Data.Mappings
                .HasColumnType("money")
                .IsRequired();
 
+            builder.Property(p => p.Quantity)
+              .HasColumnName("Quantity")
+              .IsRequired();
+
             builder.Property(p => p.Image)
                .HasColumnName("Image")
                .HasColumnType("varchar(50)")
+               .IsRequired();
+
+            builder.Property(p => p.CreateDate)
+               .HasColumnName("CreateDate")
+               .IsRequired();
+
+            builder.Property(p => p.LastUpdateDate)
+               .HasColumnName("LastUpdateDate")
                .IsRequired();
 
             builder.Property(p => p.CategoryId)
