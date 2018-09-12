@@ -1,72 +1,83 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pathfinder.Data.Context;
+using Pathfinder.Data.Repositories;
 using Pathfinder.Entities;
+using Pathfinder.Models.Categories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Pathfinder.Controllers
 {
+    [Produces("application/json")]
+    [Route("v1")]
     public class CategoryController : Controller
     {
-        private readonly DataContext _dataContext;
+        private readonly CategoryRepository repository;
 
-        public CategoryController(DataContext dataContext)
+        public CategoryController(CategoryRepository repository)
         {
-            _dataContext = dataContext;
+            this.repository = repository;
         }
 
-        [Route("v1/categories")]
-        [HttpGet]
+
+        [HttpGet("categories")]
+        [ResponseCache(Location = ResponseCacheLocation.Client, Duration = 5)]
         public IEnumerable<Category> Get()
         {
-            return _dataContext.Categories.AsNoTracking().ToList();
+            return repository.FindAll();
         }
 
-        [Route("v1/categories/{id}")]
-        [HttpGet]
+        [HttpGet("categories/{id}")]
         public Category Get(int id)
         {
-            return _dataContext.Categories.AsNoTracking().Where(c => c.Id == id).FirstOrDefault();
+            return repository.Find(id);
         }
 
-        [Route("v1/categories/{id}/produtcs")]
-        [HttpGet]
+        [HttpGet("v1/categories/{id}/produtcs")]
         public IEnumerable<Product> GetProducts(int id)
         {
-            return _dataContext.Products.AsNoTracking().Where(c => c.CategoryId == id).ToList();
+            return repository.FindProduct(id);
         }
 
-        [Route("v1/categories")]
-        [HttpPost]
-        public Category Post([FromBody] Category category)
+        [HttpPost("categories")]
+        public IActionResult Post([FromBody] CategoryCreateViewModel model)
         {
-            _dataContext.Categories.Add(category);
-            _dataContext.SaveChanges();
+            var category = new Category();
 
-            return category;
+            category.Title = model.Title;
+
+            repository.Insert(category);          
+            
+            return new ObjectResult(HttpStatusCode.OK + " categoria cadastrado com sucesso");
         }
 
-        [Route("v1/categories")]
-        [HttpPost]
-        public Category Put([FromBody] Category category)
+        [HttpPut("categories")]
+        public IActionResult Put([FromBody] CategoryUpdateViewModel model)
         {
-            _dataContext.Entry<Category>(category).State = EntityState.Modified;
-            _dataContext.SaveChanges();
+            var category = new Category();
 
-            return category;
+            category.Id = model.Id;
+            category.Title = model.Title;
+
+            repository.Update(category);
+
+            return new ObjectResult($"Status: {HttpStatusCode.OK} - categoria atualizada com sucesso");
         }
 
-        [Route("v1/categories")]
-        [HttpPost]
-        public Category Delete([FromBody] Category category)
+        [HttpDelete("categories")]
+        public IActionResult Delete([FromBody] CategoryFindViewModel model)
         {
-            _dataContext.Categories.Remove(category);
-            _dataContext.SaveChanges();
+            var category = repository.Find(model.Id);
 
-            return category;
+            repository.Delete(category);
+
+            return new ObjectResult($"Status: {HttpStatusCode.OK} - categoria deletada com sucesso");
+
         }
     }
 }

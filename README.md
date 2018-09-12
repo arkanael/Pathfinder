@@ -1,29 +1,18 @@
-Projeto MARS Pathfinder. Controle de Produtos.
-WebApi ASP.NET CORE
-.NET CORE
-Failfast validation
-MVC
+Projeto Cadastro de produtos MARS Pathfinder. 
+Exemplo de desenvolvimento de uma WEBAPI utilizando ASP.NET CORE 2.0 e o Entity Framework Core
+
+WebApi ASP.NET CORE 2.0
+.NET CORE 2.0
 Data Driven Design
 Repository Pattern
 Entity Framework Core
 Swagger
-Queries
-Versionamento
 Cache
 Compressão
-Monitoramento
-SQL SERVER
-SQL Operations Studio
-DOCKER
+SQL SERVER LocalDB
+Flunt
 
-
-
-
-
-
-
-
-
+Status: EM Desenvolvimento
 
 Sobre:
 Mars Pathfinder foi uma missão espacial norte-americana lançada em meados de 1996 que tinha como objetivo 

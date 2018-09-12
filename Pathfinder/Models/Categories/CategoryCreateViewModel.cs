@@ -7,7 +7,6 @@ namespace Pathfinder.Models.Categories
 {
     public class CategoryCreateViewModel
     {
-        public int Id { get; set; }
         public string Title { get; set; }
     }
 }
