@@ -19,7 +19,7 @@ namespace Pathfinder.Data.Repositories
 
         public List<Product> FindProduct(int id)
         {
-            return _context.Set<Product>().Include("Product").Where(x => x.CategoryId == id).AsNoTracking().ToList();
+            return _context.Set<Product>().Where(x => x.CategoryId == id).AsNoTracking().ToList();
         }
     }
 }

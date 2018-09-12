@@ -21,7 +21,18 @@ namespace Pathfinder
             services.AddScoped<CategoryRepository, CategoryRepository>();
             services.AddScoped<ProductRepository, ProductRepository>();
             //Registrar o Swagger.
-            services.AddSwaggerGen(x => x.SwaggerDoc("v1", new Info { Title = "API ASP.NET CORE", Version = "v1"}));
+            services.AddSwaggerGen(x => x.SwaggerDoc("v1", new Info { Title = "MARS Pathfinder - Cadastro de produto em ASP.NET CORE 2.0", Version = "v1",
+                Description = "Utilizando ASP.NET CORE 2.0, Data Driven Design, Repository Pattern, Entity Framework Core, SQL Server LocalDB, Cache, Compressão",
+                
+                Contact = new Contact
+                {
+                    Name = "Luiz Guilherme Bandeira",
+                    Url = "https://github.com/arkanael",
+                    
+                    Email = "arkanael@gmail.com" 
+                }
+
+            }));
                 
         }
 

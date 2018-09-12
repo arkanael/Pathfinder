@@ -4,5 +4,21 @@
         <name>Pathfinder</name>
     </assembly>
     <members>
+        <member name="T:Pathfinder.Controllers.CategoryController">
+            <summary>
+            Controller para controlar o registro de categories
+            </summary>
+        </member>
+        <member name="M:Pathfinder.Controllers.CategoryController.#ctor(Pathfinder.Data.Repositories.CategoryRepository)">
+            <summary>
+            Construtor para injeção de dependencia
+            </summary>
+        </member>
+        <member name="M:Pathfinder.Controllers.CategoryController.Get">
+            <summary>
+            Buscar todas as categorias
+            </summary>
+            <returns>IEnumerable de categories</returns>
+        </member>
     </members>
 </doc>

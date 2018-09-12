@@ -13,18 +13,27 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Controllers
 {
+    /// <summary>
+    /// Controller para controlar o registro de categories
+    /// </summary>
     [Produces("application/json")]
     [Route("v1")]
     public class CategoryController : Controller
     {
         private readonly CategoryRepository repository;
 
+        /// <summary>
+        /// Construtor para injeção de dependencia
+        /// </summary>
         public CategoryController(CategoryRepository repository)
         {
             this.repository = repository;
         }
 
-
+       /// <summary>
+       /// Buscar todas as categorias
+       /// </summary>
+       /// <returns>IEnumerable de categories</returns>
         [HttpGet("categories")]
         [ResponseCache(Location = ResponseCacheLocation.Client, Duration = 5)]
         public IEnumerable<Category> Get()
@@ -38,7 +47,7 @@ namespace Pathfinder.Controllers
             return repository.Find(id);
         }
 
-        [HttpGet("v1/categories/{id}/produtcs")]
+        [HttpGet("categories/{id}/produtcs")]
         public IEnumerable<Product> GetProducts(int id)
         {
             return repository.FindProduct(id);

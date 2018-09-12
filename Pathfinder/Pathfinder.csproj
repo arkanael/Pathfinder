@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>C:\Cursos\COTI\Criando APIs com ASP.NET Core e EF Core\Projeto\Pathfinder\Pathfinder\Pathfinder.xml</DocumentationFile>
     <OutputPath></OutputPath>
+    <noWarn>1591</noWarn>
   </PropertyGroup>
 
   <ItemGroup>
